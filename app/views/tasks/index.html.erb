@@ -1,8 +1,14 @@
-<h1>Tasks</h1>
-<ul>
-  <% @tasks.each do |task|  %>
-
-  <li> <%= link_to task.title, task%> </li>
-  <% end %>
-</ul>
-<%= link_to "Add a new task", new_task_path %>
+<div class="card">
+  <div class="card-header">
+    <h1>Tasks</h1> <%= link_to "Add a new task", new_task_path, class: "btn btn-primary" %>
+  </div>
+  <div class="card-body">
+    <% @tasks.each do |task|  %>
+    <h5 class="card-title m-2"> <%= link_to task.title, task, class: "text-decoration-none"%></h5>
+    <p class="card-text"><%= task.details %></p>
+    <%= link_to "Delete", task, class: "btn btn-danger",
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
+    <% end %>
+  </div>
+</div>
